@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class FullImage extends StatelessWidget {
+  final String pageTitle;
+  final Color pageColor;
+  final String backgroundImageUrl;
+  final Color backColor;
+  
+  const FullImage({
+    Key? key,
+    required this.pageTitle,
+    required this.pageColor,
+    required this.backgroundImageUrl,
+    required this.backColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    
+    final double topPadding = MediaQuery.of(context).padding.top;
+    final EdgeInsets imagePadding = const EdgeInsets.only( left: 2, right: 2, bottom: 2);
+
+    return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 200, 200, 200),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: backColor),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      extendBodyBehindAppBar: true,
+
+      body: Padding(
+        padding: EdgeInsets.only(top: 50),  
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Padding(
+                padding: imagePadding,  
+                child: Image.asset(
+                  backgroundImageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            // Additional widgets can be added here
+          ],
+        ),
+      ),
+    );
+  }
+}
